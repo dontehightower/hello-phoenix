@@ -12,6 +12,20 @@ Steps to create:
 3.  add a view to `web/views`
 4.  add a template to `web/template`
 
+### Dynamic Data
+
+Hello World is great, but we can dynamically greet users based on the name passed to the URL.
+
+1.  edit the `hello_controller.ex` to pattern match a `:name`
+
+    ```elixir
+    def world(conn, %{"name" => name}) do
+        render conn, "world.html", name: name
+      end
+    ```
+
+2.  make use of the name in the template `web/templates/hello/world.html`
+
 ---
 
 - Install dependencies with `mix deps.get`
