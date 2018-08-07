@@ -1,5 +1,7 @@
 # Hello
 
+A cononical Hello World Application bootstrapped with Elixir/Phoenix, along with notes from a tour of the generated code.
+
 ## First Feature
 
 First Feature will print a string when a specific URL is loaded.
