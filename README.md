@@ -1,5 +1,19 @@
 # Hello
 
+## First Feature
+
+First Feature will print a string when a specific URL is loaded.
+To start your Phoenix app:
+
+Steps to create:
+
+1.  edit `router.ex` to point a URL to code
+2.  add a controller to `web/controllers`
+3.  add a view to `web/views`
+4.  add a template to `web/template`
+
+---
+
 - Install dependencies with `mix deps.get`
 - Create and migrate your database with `mix ecto.create && mix ecto.migrate`
 - Install Node.js dependencies with `npm install`
