@@ -26,6 +26,53 @@ Hello World is great, but we can dynamically greet users based on the name passe
 
 2.  make use of the name in the template `web/templates/hello/world.html`
 
+## Phoenix File Structure
+
+Out of the box, as soon as you run `mix phoenix.new app_name`, you get the following file structure:
+
+- `config`for configuration.
+  - there is a master `config.exs` file, plus one for each environment `dev.exs` `prod.exs` `test.exs` and `prod.secret.exs`
+  - switch between prod, dev, and test via the `MIX_ENV` variable
+- `lib` for ong running propcesses
+- `test` for tests
+- `web` for models, views, and controllers
+
+Fun fact, when in dev mode, the files in `lib` do not get reloaded using _live reload_.
+
+### The Router
+
+The router is the last plug in the endpoint. It establishes a connection, calls a pipeline, or set of functions, based on the environment( browser or api ) and then calls a specified controller.
+
+For the example code:
+
+```elixir
+scope "/", Hello do
+    pipe_through :browser # Use the default browser stack
+
+    get "/hello/:name", HelloController, :world
+    get "/", PageController, :index
+  end
+```
+
+the `/hello/:name` route calls the `HelloController`
+and the `/` route calls the `PageController`
+
+### The V and the C
+
+In Phoenix, most of the HTML and JS will go in the web directory.
+
+- The `models` `views` and `controllers` directories are present, as is to be expected. However, there are also `templates` and `static` directories. Phoenix seperates the `templates` from the `views`. `static` exists for distinguishing static content.
+
+That's it, a basic tour of the Phoenix Framework through the conocial Hello World application. While it's true, a lot of the "meat" is in the web directory, it may be a good idea to take a look at the code that runs each request:
+
+```elixir
+connection                             # Plug.Conn
+  |> endpoint                          # lib/hello/endpoint.ex
+  |> browser                           # web/router.ex
+  |> HelloController.world             # web/controllers/hello_controller.ex
+  |> HelloView.render("world.html")    # web/templates/hello/world.html.eex
+```
+
 ---
 
 - Install dependencies with `mix deps.get`
